@@ -136,11 +136,64 @@ body {
 
 /* Här skriver ni er CSS */
 
+.popular {
+background-color:var(--text-yellow);
+display: flex;
+flex-direction: column;
+align-items: center;
+border-radius: 10x;
+}
+
+.popular__title {
+    /* Rubrik h2 för populära filmer */
+    margin-top: 0;
+    background-color: var(--primary-grey);
+    color: var(--text-yellow);
+    font-size: 1rem;
+    
+}
+
+.popular__card-container  {
+    /* låda för galleriet */
+    background-color: var(--text-blue);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.popular__card {
+    /* kort för topp20-filmerna */
+    background-color: var(--text-yellow);
+    width: 50px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid var(--text-blue);
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--primary-grey);
+
+}
+
+.popular__card img{
+    /* class för bilder i korten
+    width: 10%;
+    height: auto;*/
+    border-radius: 5 px;
+}
+
+.popular__card h3 {
+    /* class för h3:or i filmkorten*/
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.popular__card p {
+    /* styling av texten i filmkorten*/
+    font-size: 14px;
+}
 
 
 
 
-/* Media Queries */
+/* Media Queries 
 @media screen and (max-width: 1380px) {
     .content-wrapper {
     }
@@ -154,4 +207,4 @@ body {
 @media screen and (max-width: 750px) {
     .content-wrapper {
     }
-}
+}*/

@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
     fetchDataAndStore();
     setupCarousel();
     upDateTrailers();
+    renderMovieGallery()
 });
 
 //Denna funktion skapar funktionalitet för karusellen
@@ -98,5 +99,34 @@ async function upDateTrailers() {
         console.log('c.log random filmer har lagts till i DOM');
     }   catch (error) {
         console.log('c.log din jävla klant du har kodat fel!', error);
+    }
+}
+
+async function renderMovieGallery() {
+    try {
+        const movies = await fetchMovies();
+        const popularCardContainer = document.querySelector("#popularCardContainer");
+        movies.forEach(movie => {
+            const movieCard = document.createElement("article")
+            movieCard.classList.add("poplular__card");
+
+            const posterImg = document.createElement("img");
+            posterImg.src = movie.poster;
+            posterImg.alt = movie.title;
+            movieCard.appendChild(posterImg);
+
+            const title = document.createElement("h3")
+            title.textContent = movie.title;
+            movieCard.appendChild(title);
+
+            // Skapa summering av filmen, men det funkar ju inte för det finns inte nån summary i API
+            const summary = document.createElement("p");
+            summary.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, aspernatur!';
+            movieCard.appendChild(summary);
+
+            popularCardContainer.appendChild(movieCard);
+        });
+    } catch (error) {
+        console.error('Nu blev det fel i filmhämtningen, Göran!', error);
     }
 }
