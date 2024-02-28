@@ -11,16 +11,16 @@
 
     <!-- Här startar header -->
     
-    <header class="header">
-        <div class="content-wrapper header__flex">
-            <a href="index.html"><img src="./res/lennLogo2.png" alt="logotype"></a>
-            <form>
-                <input id="searchInput" type="text">
-                <button class="header__form-btn" id="searchBtn">Search</button>
-            </form>       
-            <button class="header__fav-btn" id="favBtn">Favorites</button> 
-        </div>
-    </header>
+                <header class="header">
+                    <div class="content-wrapper header__flex">
+                        <a href="index.html"><img src="./res/lennLogo2.png" alt="logotype"></a>
+                        <form>
+                            <input id="searchInput" type="text">
+                            <button class="header__form-btn" id="searchBtn">Search</button>
+                        </form>       
+                        <button class="header__fav-btn" id="favBtn">Favorites</button> 
+                    </div>
+                </header>
     
     <!-- Här slutar header -->
 
@@ -35,7 +35,7 @@
     <!-- Här finns en section för sökresultaten -->
     
     <!-- Search Results d-none -->
-    <section class="d-none">
+    <section class="content-wrapper d-none" id="searchResults">
         <div class="content-wrapper results">
             <h2 class="results__title">Search Results</h2>
             <ul class="results__list" id="resultsList">
@@ -47,9 +47,9 @@
     
     
     <!-- Här börjar Trailer Section -->
-    <section>
+    <section id="trailer-section">
         <div class="content-wrapper">
-            <article class="carousel" data-carousel>
+            <article class="carousel" id="carousel" data-carousel>
                 <button class="carousel__btn prev" data-carousel-btn="prev">&#8612;</button>
                 <button class="carousel__btn next" data-carousel-btn="next">&#8614;</button>
                 <ul data-slides>
@@ -77,8 +77,8 @@
     <!-- Här slutar Trailer Section -->
     
     <!-- Här börjar Popular movies section -->
-    <section>
-        <div class="content-wrapper popular">
+    <section id="popMovies">
+        <div class="content-wrapper popular" id="topMovies">
             <h2 class="popular__title">My Movie Database Top 20</h2>
             <section class="popular__card-container" id="popularCardContainer">
                 
@@ -89,7 +89,11 @@
     
     <!-- Här slutar Popular movies section -->
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, aspernatur!</p>
+    <article class="content-wrapper details d-none" id="movieDetails">
+
+
+    </article>
+    
     <script src="./scripts/script.js"></script>
 </body>
 </html>

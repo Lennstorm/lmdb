@@ -190,6 +190,11 @@ border-radius: 10x;
     font-size: 14px;
 }
 
+.details {
+    width: 70%;
+    background-color: var(--text-blue);
+}
+
 
 
 
