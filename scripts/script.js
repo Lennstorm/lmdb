@@ -15,8 +15,7 @@ window.addEventListener('load', async() => {
 
 //Denna funktion skapar funktionalitet för karusellen
 function setupCarousel() {
-    console.log('c.log rad16 carousel');
-    const buttons = document.querySelectorAll('[data-carousel-btn]');
+        const buttons = document.querySelectorAll('[data-carousel-btn]');
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const offset = btn.dataset.carouselBtn === 'next' ? 1 : -1;
@@ -67,12 +66,11 @@ async function upDateTrailers() { // Slumpgenerator som tar fram fem random film
         iframes.forEach((iframe, index) => {
             iframe.src = randomMovies[index].trailer_link;
         })
-        console.log('c.log rad98 random filmer har lagts till i DOM');
+        
     }   catch (error) {
-        console.log('c.log rad100 din jävla klant du har kodat fel!', error);
+        
     }
 }
-
 
 async function renderMovieGallery() { // Function för att rendera ut topp-filmerna i DOM
     try {
@@ -80,8 +78,7 @@ async function renderMovieGallery() { // Function för att rendera ut topp-filme
         movieData.forEach(movie => {
             const movieCard = document.createElement("article")
             movieCard.classList.add("popular__card");
-            console.log(movieData);
-
+            
             const posterImg = document.createElement("img");
             posterImg.src = movie.poster;
             posterImg.alt = movie.title;
@@ -98,15 +95,13 @@ async function renderMovieGallery() { // Function för att rendera ut topp-filme
     }
 }
 
-
-
 async function searchMovies() {  //   Sökfunktion för filmer att skicka till API
     const searchFormRef = document.querySelector("form");
     const searchInputRef = document.querySelector("#searchInput");
 
     searchFormRef.addEventListener('submit', async (event) => {
         event.preventDefault();
-        console.log('searchmovies');    
+            
         const searchTerm = searchInputRef.value.trim();
         if (searchTerm === '') {
             location.reload();
@@ -176,9 +171,9 @@ function renderSearchResults(results) { // rendera sökresultat från fetchSearc
 }
 
 async function fetchMovieDetails(event) { //  funktion för att göra specifik sökning på IMDb-ID vid klick på film ur sökresultatet
-    console.log(event.currentTarget.dataset.id)
+    
     const imdbID = event.currentTarget.dataset.id;
-    console.log('c.log rad 218, imdbID', imdbID);
+    
     const searchResultsRef = document.querySelector('#searchResults');
     searchResultsRef.classList.remove('d-flex')
     searchResultsRef.classList.add('d-none')
@@ -227,13 +222,7 @@ async function fetchMovieDetails(event) { //  funktion för att göra specifik s
     movieDetCard.appendChild(movieGenre);
     movieDetCard.appendChild(moviePlot);
     movieDetCard.appendChild(movieEarnings);
-    
-    console.log(data);
-    // if (data.Response === 'True') {
-    //     return data;
-    // } else {
-    //     throw new Error(data.Error);
-    // }
+      
 
     return data;
 }
@@ -245,12 +234,3 @@ async function clearSearch() {
         searchInputRef.value = '';
     });
 };
-
-// 
-
-// function showSearchResultsSection() {
-//     document.querySelector('#searchResults').classList.remove('d-none');
-// }
-
-
-
