@@ -1,0 +1,382 @@
+/* Variables */
+:root {
+    --header-grey: #121212;
+    --primary-black: #000000;
+    --primary-white: #ffffff;
+    --primary-grey: #1A1A1A;
+    --text-yellow: #F5C518;
+    --text-blue: #5595E7;
+}
+
+/* Base */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--primary-black);
+    max-width: 100%;
+}
+
+/* Utils */
+.content-wrapper {
+    width: 70%;
+    margin: 0 auto;
+    background-color: var(--primary-grey);
+}
+
+.d-none {
+    display: none;
+}
+
+.d-flex {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-grid {
+    display: flex;
+}
+
+/* Header */
+.header {
+    width: 100%;
+    z-index: 999;
+}
+
+.header__flex {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__flex > * {
+    flex-grow: 1;
+    flex-basis: 33%;
+
+}
+
+.header img {
+    margin-left: 1rem;
+    max-width: 50%;
+    min-width: 50px;
+
+}
+
+.header form {
+
+    display: flex;
+    justify-content: center;
+}
+
+.header input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 2rem 0 0 2rem;
+    border: none;
+}
+
+.header__form-btn {
+    border-radius: 0 2rem 2rem 0;
+    width: 5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.header__fav-btn {
+    
+    margin-right: 1rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--text-yellow);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Carousel */
+.carousel {
+    margin: auto;
+    margin-top: 2rem;
+    width: 70%;
+    aspect-ratio: 3/2;;
+    position: relative;
+    background-color: var(--primary-grey);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.carousel__slide {
+    position: absolute;
+    margin: auto;
+    width: 80%;
+    inset: 0;
+    visibility: hidden;
+    aspect-ratio: 3/2;
+    transition: 200ms visibility ease-in-out;
+}
+
+.carousel__slide[data-active] {
+    visibility: visible;
+}
+
+.carousel__slide iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel__btn {
+    position: absolute;
+    font-size: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-yellow);
+    background: none;
+    border: none;
+}
+
+.carousel__btn:hover,
+.carousel__btn:focus {
+    color: var(--primary-white);
+}
+
+.carousel__btn.prev {
+    left: 1rem;
+}
+
+.carousel__btn.next {
+    right: 1rem;
+}
+
+/* Här skriver ni er CSS */
+
+#popMovies {
+    margin-top: 2rem;
+    align-items: center;
+}
+
+/* Rubrik h2 för populära filmer */
+/* Barn till #popular__card-container/.popular__card-container */ 
+.popular__title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;    
+    color: var(--text-yellow);
+    font-size: 3rem;
+    
+}
+
+/* class för topp20-filmerna */
+.popular {
+    /*    background-color:var(--primary-grey);*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10x;
+}
+
+.popular__card-container  {
+    /* låda för galleriet */
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+/* Filmkort för topp20-filmer.*/
+/*   Barn till .popular__card-container */
+.popular__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-white);
+    min-width: 260px;
+    max-width: 10%;
+    margin: 5px;
+    padding: 2rem;
+    border: 5px solid var(--text-yellow);
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--primary-grey);    
+}
+
+/* class för bilder i korten*/
+/* Barn till .popular__card */
+.popularCard-img {
+    width: 100%;
+    height: 100%;
+
+}
+
+/* class för h3:or i filmkorten*/
+/* Barn till .popular__card */
+.popular__card h3 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    max-width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+/* class för article som renderar filmdetaljer vid klick på sökt film*/
+.details {
+    display: grid;
+    width: 70%;
+    background-color: var(--primary-white);
+    border: 5px solid var(--text-yellow);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.details__title {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__director {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__poster {
+    margin: auto auto 1rem 1rem;
+    max-width: 50%;    
+    
+}
+
+.details__genre {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__plot{
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__earnings {
+    margin: auto auto 1rem 1rem;
+
+}
+
+
+
+.results {
+    /*div som innehåller sökresultat. Barn till #searchResults*/
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    }
+
+.results__title {
+    /* h2 som är rubrik i sökresultatet. Barn till .results*/
+    color: var(--text-yellow);
+    margin: 2rem;
+    width: 100%;
+    text-align: center;
+
+}
+
+.results__list {
+    /*UL som innehåller listelement. Barn till .results*/
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+}
+.result {
+    /*listelementen som skapas vid sökning. Barn till .results__list*/
+    list-style: none;
+    max-width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--text-yellow);
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--primary-grey);    
+    display: flex;
+}
+
+.result img {
+    /*bilder i listelementen. Barn till .result*/
+    max-width: 20%;    
+    min-width: 20px;
+      
+}
+
+.result span {
+    /*textelement i listelement Barn till .result*/
+    max-width: 70%;
+    margin: .3rem;
+    font-size: 1rem;
+    color: var(--text-yellow);
+    word-wrap: break-word;
+}
+
+.footer {
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__text {
+    margin: auto auto 4rem auto;
+    align-self: center;
+    font-size: 1.5rem;
+    color: var(--text-yellow);
+}
+
+ /* Media Queries  */
+
+@media screen and (min-width: 1400px) {
+    .result {
+        min-width: 300px;
+        max-width: 500%;
+    }
+    
+}
+
+@media screen and (max-width: 1380px) {
+    .content-wrapper {
+        width: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 1100px) {
+    .content-wrapper {
+        width: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 992px) {
+    :root {font-size: 12px;}
+    .content-wrapper {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {font-size: 8px;}
+    .content-wrapper {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    :root {font-size: 6px;}
+    .content-wrapper {
+        width: 70%;
+    }
+}

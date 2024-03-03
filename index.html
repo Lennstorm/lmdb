@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMDb - Lenny Movie Database</title>
+    <link rel="icon" href="/res/favIcon2.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+   
+                <header class="header">
+                    <div class="content-wrapper header__flex">
+                        <a href="index.html"><img src="./res/lennLogo2.png" alt="logotype"></a>
+                        <form>
+                            <input id="searchInput" type="text">
+                            <button class="header__form-btn" id="searchBtn">Search</button>
+                        </form>       
+                        <button class="header__fav-btn" id="favBtn">Clear search</button> 
+                    </div>
+                </header>
+    
+
+                
+<!-- section för favoriter. Som jag inte använder -->
+    <section class="favorites-container d-none" id="favoritesContainer">
+        <div class="content-wrapper favorites" id="favorites">
+            
+        </div>
+    </section>
+
+    
+    <!-- section för sökresultaten -->
+        
+    <section class="content-wrapper d-none" id="searchResults">
+        <div class="content-wrapper results">
+            <h2 class="results__title">Search Results</h2>
+            <ul class="results__list" id="resultsList">
+            </ul>
+        </div>
+    </section>
+    
+        <!-- Trailer Section -->
+    <section id="trailer-section">
+        <div class="content-wrapper">
+            <article class="carousel" id="carousel" data-carousel>
+                <button class="carousel__btn prev" data-carousel-btn="prev">&#8612;</button>
+                <button class="carousel__btn next" data-carousel-btn="next">&#8614;</button>
+                <ul data-slides>
+                    <li class="carousel__slide" data-active>
+                        <iframe src="" width="420" height="315" frameborder="0"></iframe>
+                    </li>
+                    <li class="carousel__slide">
+                        <iframe src="" width="420" height="315" frameborder="0"></iframe>
+                    </li>
+                    <li class="carousel__slide">
+                        <iframe src="" width="420" height="315" frameborder="0"></iframe>
+                    </li>
+                    <li class="carousel__slide">
+                        <iframe src="" width="420" height="315" frameborder="0"></iframe>
+                    </li>
+                    <li class="carousel__slide">
+                        <iframe src="" width="420" height="315" frameborder="0"></iframe>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </section> 
+    
+    <!-- section för topp20-filmer -->
+    <section id="popMovies">
+        
+        <div class="content-wrapper popular" id="topMovies">
+            <h2 class="popular__title">My Movie Database Top 20</h2>
+            <section class="popular__card-container" id="popularCardContainer">
+                
+                
+            </section>
+        </div>
+    </section>
+    
+    
+    <!-- article för filmdetaljer vid klick på sökt film -->
+    <div class="content-wrapper d-none" id="details-wrapper">
+        <article class="details" id="movieDetails">
+
+        </article>
+    </div>
+
+    <footer>
+        <div class="content-wrapper footer">        
+            <p class="footer__text">Lenny Movie Database copyright? &copy; 2024 Inga rätter förebehållna.</p>
+        
+        </div>
+    </footer>
+    
+    <script src="./scripts/script.js"></script>
+</body>
+</html>
