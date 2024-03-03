@@ -1,12 +1,14 @@
 'use strict';
 
+// Global variabel som lagrar data
+let movieData;
+
 window.addEventListener('load', async() => {
     console.log('c.log rad4 load');
     //Förslagsvis anropar ni era funktioner som skall sätta lyssnare, rendera objekt osv. härifrån
     movieData = await fetchMovies();
-    processMovies();
+    //processMovies();
     searchMovies();
-//    fetchDataAndStore();
     setupCarousel();
     upDateTrailers();
     renderMovieGallery()
@@ -35,9 +37,7 @@ function setupCarousel() {
     });
 }
 
-// Function för att hämta data från Jespers API
-
-async function fetchMovies() {
+async function fetchMovies() { // Function för att hämta data från Jespers API
  try {
     const response = await fetch('https://santosnr6.github.io/Data/movies.json');
     const movies = await response.json();
@@ -49,31 +49,16 @@ async function fetchMovies() {
     }
 }
 
-async function processMovies() {
-    try {
-        movieData = await fetchMovies();
-        
-    } catch (error) {
-        console.log('c.log rad56 Error processing data', error);
-    }
-}
-
-
-// Global variabel som lagrar data
-let movieData;
-
-// async function fetchDataAndStore() {
+// async function processMovies() {
 //     try {
 //         movieData = await fetchMovies();
-//         console.log('c.log Fetched movie däta', movieData);        
-//     } catch (error){
-//         console.log('c.log rad69 ärror fetching däta', error)
+        
+//     } catch (error) {
+//         console.log('c.log rad56 Error processing data', error);
 //     }
 // }
 
-// Slumpgenerator som tar fram fem random filmer och lägger dem i karusellen
-
-async function upDateTrailers() {
+async function upDateTrailers() { // Slumpgenerator som tar fram fem random filmer och lägger dem i karusellen
     try {
         const randomMovies = [];
         const usedIndexes = new Set();
@@ -85,55 +70,47 @@ async function upDateTrailers() {
                 usedIndexes.add(randomIndex);
             }
         }        
-        
         console.log('* * * * * Slumpade filmer:');
         randomMovies.forEach(movie => {
             console.log('* *', movie.title);
         });
-
         const iframes = document.querySelectorAll('.carousel__slide iframe');
         iframes.forEach((iframe, index) => {
             iframe.src = randomMovies[index].trailer_link;
         })
-
         console.log('c.log rad98 random filmer har lagts till i DOM');
     }   catch (error) {
         console.log('c.log rad100 din jävla klant du har kodat fel!', error);
     }
 }
 
-// Function för att rendera ut topp-filmerna i DOM
-async function renderMovieGallery() {
+
+async function renderMovieGallery() { // Function för att rendera ut topp-filmerna i DOM
     try {
         const popularCardContainer = document.querySelector("#popularCardContainer");
         movieData.forEach(movie => {
             const movieCard = document.createElement("article")
-            movieCard.classList.add("poplular__card");
+            movieCard.classList.add("popular__card");
 
             const posterImg = document.createElement("img");
             posterImg.src = movie.poster;
             posterImg.alt = movie.title;
+            posterImg.classList.add("popularCard-img");
             movieCard.appendChild(posterImg);
 
             const title = document.createElement("h3")
             title.textContent = movie.title;
             movieCard.appendChild(title);
-
-            // Skapa summering av filmen, men det funkar ju inte för det finns inte nån summary i API
-            // const summary = document.createElement("p");
-            // summary.textContent = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, aspernatur!';
-            // movieCard.appendChild(summary);
-
             popularCardContainer.appendChild(movieCard);
         });
     } catch (error) {
-        console.log('c.log rad129 Nu blev det fel i filmhämtningen, Göran!', error);
+        console.log('c.log rad129 Nu blev det fel i renderingen, Göran!', error);
     }
 }
 
-//   Sökfunktion för filmer att skicka till API
 
-async function searchMovies() {
+
+async function searchMovies() {  //   Sökfunktion för filmer att skicka till API
     const searchFormRef = document.querySelector("form");
     const searchInputRef = document.querySelector("#searchInput");
 
@@ -148,8 +125,9 @@ async function searchMovies() {
                 const searchResults = await fetchSearchResults(searchTerm);
                 renderSearchResults(searchResults);
                 // DÖLJA movieDetails
-                const movieDetSect = document.querySelector('#movieDetails');
+                const movieDetSect = document.querySelector('#details-wrapper');
                 movieDetSect.classList.add('d-none');
+                movieDetSect.classList.remove('d-flex');
             } catch (error) {
             console.log('Error i hämtingen, du!', error);
             }
@@ -157,19 +135,8 @@ async function searchMovies() {
     });
 };
 
-// if (searchTerm !== '') {
-//     try {
-//         const searchResults = await fetchSearchResults(searchTerm);
-//         renderSearchResults(searchResults);
-//     } catch (error) {
-//     console.log('Error i hämtingen, du!', error);
-//     }
-// }
-// });
-// };
 
-// bred sökning i API - startas av klick i funktionen searchMovies()
-async function fetchSearchResults(searchTerm) {
+async function fetchSearchResults(searchTerm) { // bred sökning i OMDB - startas av klick i funktionen searchMovies()
     const apiKey = '792523f7';
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}`;
     const response = await fetch(apiUrl);
@@ -181,13 +148,15 @@ async function fetchSearchResults(searchTerm) {
     }
 }
 
-// rendera sökresultat som lista - startas av eventlyssnare i funktionen searchMovies()
-function renderSearchResults(results) {
+function renderSearchResults(results) { // rendera sökresultat från fetchSearchResults - startas av eventlyssnare i funktionen searchMovies()
     const trailerSectionRef = document.querySelector('#trailer-section');
     trailerSectionRef.classList.add('d-none');
     const popMoviesSection = document.querySelector('#popMovies');
     popMoviesSection.classList.add('d-none');
-    showSearchResultsSection();
+    //showSearchResultsSection();
+    const searchResultsRef = document.querySelector('#searchResults');
+    searchResultsRef.classList.remove('d-none');
+    searchResultsRef.classList.add('d-flex');
     const resultsListRef = document.querySelector("#resultsList");
     while(resultsListRef.firstChild){
         resultsListRef.removeChild(resultsListRef.firstChild);
@@ -207,30 +176,27 @@ function renderSearchResults(results) {
 
         resultsListRef.appendChild(listItem);
     });
-    const movieDetailsRef = document.querySelector('#movieDetails');
-    const searchResultsRef = document.querySelector('#searchResults');
-    movieDetailsRef.addEventListener('click', (event) => {
-        movieDetailsRef.classList.add('d-none');
-        while (movieDetailsRef.firstChild) {
-            movieDetailsRef.removeChild(movieDetailsRef.firstChild);}
-        searchResultsRef.classList.remove('d-none');
-
-
-    });
-
-
+        const movieDetailsRef = document.querySelector('#details-wrapper');
+        movieDetailsRef.addEventListener('click', () => {
+            movieDetailsRef.classList.add('d-none');
+            movieDetailsRef.classList.remove('d-flex');
+            const movieDetCard = document.querySelector('#movieDetails')
+            movieDetCard .innerHTML = '';
+            searchResultsRef.classList.remove('d-none');
+            });
 }
 
-//  funktion för att göra specifik sökning på IMDb-ID
-
-async function fetchMovieDetails(event) {
+async function fetchMovieDetails(event) { //  funktion för att göra specifik sökning på IMDb-ID vid klick på film ur sökresultatet
     console.log(event.currentTarget.dataset.id)
     const imdbID = event.currentTarget.dataset.id;
     console.log('c.log rad 218, imdbID', imdbID);
     const searchResultsRef = document.querySelector('#searchResults');
+    searchResultsRef.classList.remove('d-flex')
     searchResultsRef.classList.add('d-none')
-    const movieDetSect = document.querySelector('#movieDetails');
+    const movieDetSect = document.querySelector('#details-wrapper');
+    movieDetSect.classList.add('d-flex');
     movieDetSect.classList.remove('d-none');
+    const movieDetCard = document.querySelector('#movieDetails')
     const apiKey = '792523f7';
     const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&plot=full&i=${imdbID}`;
     const response = await fetch(apiUrl);
@@ -239,35 +205,40 @@ async function fetchMovieDetails(event) {
     // Här presenteras hämtad data i movieDetailsSection
     const movieTitle = document.createElement('h2');
     movieTitle.textContent = data.Title
+    movieTitle.classList.add('details__title');
+
     const moviePlot = document.createElement('p');
     moviePlot.textContent = data.Plot;
+    moviePlot.classList.add('details__plot');
+
     const moviePoster = document.createElement('img');
     moviePoster.src = data.Poster;
+    moviePoster.classList.add('details__poster');
+    
     moviePoster.alt = data.Title;
     const movieGenre = document.createElement('p');
     movieGenre.textContent = `Genre: ${data.Genre}`;
-    const movieEarnings = document.createElement('p');
-    movieEarnings.textContent = `Box office: ${data.BoxOffice}`;
-    const movieDirector = document.createElement('p');
-    movieDirector.textContent = `Director: ${data.Director}`;
+    movieGenre.classList.add('details__genre');
 
+    const movieEarnings = document.createElement('p');
+    movieEarnings.textContent = `Box office net: ${data.BoxOffice}`;
+    movieEarnings.classList.add('details__earnings');
+
+    const movieDirector = document.createElement('p');
+    movieDirector.textContent = `Directed by: ${data.Director}`;
+    movieDirector.classList.add('details__director');
         
-    // LÄGG TILL MER FILMDATA HÄR!! ***************************
-        
-    // Rensa tidigare innehåll i movieDetails-sektionen MEN INTE INNERHTML!!******
-    movieDetSect .innerHTML = '';
+    movieDetCard .innerHTML = '';
     
     
     // Append children...
-    movieDetSect.appendChild(movieTitle);
-    movieDetSect.appendChild(movieDirector);
-    movieDetSect.appendChild(moviePoster);
-    movieDetSect.appendChild(movieGenre);
-    movieDetSect.appendChild(moviePlot);
-    movieDetSect.appendChild(movieEarnings);
+    movieDetCard.appendChild(movieTitle);
+    movieDetCard.appendChild(movieDirector);
+    movieDetCard.appendChild(moviePoster);
+    movieDetCard.appendChild(movieGenre);
+    movieDetCard.appendChild(moviePlot);
+    movieDetCard.appendChild(movieEarnings);
     
-    // LÄGG TILL MER FILMDATA HÄR!!
-
     console.log(data);
     // if (data.Response === 'True') {
     //     return data;
@@ -278,65 +249,11 @@ async function fetchMovieDetails(event) {
     return data;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 
 
-function showSearchResultsSection() {
-    document.querySelector('#searchResults').classList.remove('d-none');
-}
+// function showSearchResultsSection() {
+//     document.querySelector('#searchResults').classList.remove('d-none');
+// }
 
 
 
-//    Eventlyssnare för specifik sökning på IMDb-ID vid klick på sökt film ******** DEN HÄR SKA NOG SKROTAS
-//    Eventlyssnare för specifik sökning på IMDb-ID vid klick på sökt film ******** DEN HÄR SKA NOG SKROTAS
-//    Ska förhoppningsvis lyssna på resultsListRef
-
-// document.addEventListener('click', async (event) => {
-    //     console.log('c.log rad 200 Klick på film')
-    //     if (event.target.matches('.result')) {
-        //         const imdbID = event.target.dataset.imdbID;
-        //         try {
-            //             const movieDetails = await fetchMovieDetails(imdbID);
-            //             console.log('c.log rad 205', movieDetails);
-            //             // Implementera logik för att visa detaljer om filmen, t.ex. i en modalfönster
-            //         } catch (error) {
-                //             console.log('c.log rad 209 ärror fätching filmdetaljer', error);
-                //         }
-                //     }
-                // });
-//    Eventlyssnare för specifik sökning på IMDb-ID vid klick på sökt film ******** DEN HÄR SKA NOG SKROTAS
-//    Eventlyssnare för specifik sökning på IMDb-ID vid klick på sökt film ******** DEN HÄR SKA NOG SKROTAS
-
-
-
-
-// function test(event) {
-    //     console.log(event.currentTarget.dataset.id)
-    //     // d-none på allt annat, hämta data från API, fem grejer...
-    //     // 
-    
-    // }
-    
-    // om sökning görs på tomt inputfält, gör;
-    //  const searchresultsRef = document.querySelector('#searchresults');
-    //  searchresultsRef.classList.add('d-none');
-    //  const trailerSectionRef = document.querySelector('#trailer-section');
-//  trailerSectionRef.classList.remove('d-none');
-//  const popMoviesSection = document.querySelector('#popMovies');
-//  popMoviesSection.classList.remove('d-none');

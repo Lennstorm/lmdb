@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
-
-    <!-- Här startar header -->
-    
+   
                 <header class="header">
                     <div class="content-wrapper header__flex">
                         <a href="index.html"><img src="./res/lennLogo2.png" alt="logotype"></a>
@@ -22,9 +20,9 @@
                     </div>
                 </header>
     
-    <!-- Här slutar header -->
 
-    
+                
+<!-- section för favoriter. Som jag inte använder -->
     <section class="favorites-container d-none" id="favoritesContainer">
         <div class="content-wrapper favorites" id="favorites">
             
@@ -32,9 +30,8 @@
     </section>
 
     
-    <!-- Här finns en section för sökresultaten -->
-    
-    <!-- Search Results d-none -->
+    <!-- section för sökresultaten -->
+        
     <section class="content-wrapper d-none" id="searchResults">
         <div class="content-wrapper results">
             <h2 class="results__title">Search Results</h2>
@@ -43,10 +40,7 @@
         </div>
     </section>
     
-    <!-- Här slutar section för sökresultaten -->
-    
-    
-    <!-- Här börjar Trailer Section -->
+        <!-- Trailer Section -->
     <section id="trailer-section">
         <div class="content-wrapper">
             <article class="carousel" id="carousel" data-carousel>
@@ -72,12 +66,10 @@
             </article>
         </div>
     </section> 
-
     
-    <!-- Här slutar Trailer Section -->
-    
-    <!-- Här börjar Popular movies section -->
+    <!-- section för topp20-filmer -->
     <section id="popMovies">
+        
         <div class="content-wrapper popular" id="topMovies">
             <h2 class="popular__title">My Movie Database Top 20</h2>
             <section class="popular__card-container" id="popularCardContainer">
@@ -87,12 +79,24 @@
         </div>
     </section>
     
-    <!-- Här slutar Popular movies section -->
+    
+    <!-- article för filmdetaljer vid klick på sökt film -->
+    <div class="content-wrapper d-none" id="details-wrapper">
+        <article class="details" id="movieDetails">
 
-    <article class="content-wrapper details d-none" id="movieDetails">
+        </article>
+    </div>
 
 
-    </article>
+
+
+
+    <footer>
+        <div class="content-wrapper footer">        
+            <p class="footer__text">Lenny Movie Database Copyright &copy; 2024 Inga rätter förebehållna.</p>
+        
+        </div>
+    </footer>
     
     <script src="./scripts/script.js"></script>
 </body>
