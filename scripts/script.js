@@ -4,14 +4,13 @@
 let movieData;
 
 window.addEventListener('load', async() => {
-    console.log('c.log rad4 load');
-    //Förslagsvis anropar ni era funktioner som skall sätta lyssnare, rendera objekt osv. härifrån
-    movieData = await fetchMovies();
-    //processMovies();
+
+    movieData = await fetchMovies();    
     searchMovies();
     setupCarousel();
     upDateTrailers();
-    renderMovieGallery()
+    renderMovieGallery();
+    clearSearch();
 });
 
 //Denna funktion skapar funktionalitet för karusellen
@@ -41,22 +40,12 @@ async function fetchMovies() { // Function för att hämta data från Jespers AP
  try {
     const response = await fetch('https://santosnr6.github.io/Data/movies.json');
     const movies = await response.json();
-    console.log('c.log rad43 success fetching movies!');
+    
     return movies;
- } catch(error) {
-     console.log('c.log rad46  error fetching data', error);
+ } catch(error) {     
      return [];
     }
 }
-
-// async function processMovies() {
-//     try {
-//         movieData = await fetchMovies();
-        
-//     } catch (error) {
-//         console.log('c.log rad56 Error processing data', error);
-//     }
-// }
 
 async function upDateTrailers() { // Slumpgenerator som tar fram fem random filmer och lägger dem i karusellen
     try {
@@ -91,6 +80,7 @@ async function renderMovieGallery() { // Function för att rendera ut topp-filme
         movieData.forEach(movie => {
             const movieCard = document.createElement("article")
             movieCard.classList.add("popular__card");
+            console.log(movieData);
 
             const posterImg = document.createElement("img");
             posterImg.src = movie.poster;
@@ -152,8 +142,7 @@ function renderSearchResults(results) { // rendera sökresultat från fetchSearc
     const trailerSectionRef = document.querySelector('#trailer-section');
     trailerSectionRef.classList.add('d-none');
     const popMoviesSection = document.querySelector('#popMovies');
-    popMoviesSection.classList.add('d-none');
-    //showSearchResultsSection();
+    popMoviesSection.classList.add('d-none');    
     const searchResultsRef = document.querySelector('#searchResults');
     searchResultsRef.classList.remove('d-none');
     searchResultsRef.classList.add('d-flex');
@@ -202,7 +191,7 @@ async function fetchMovieDetails(event) { //  funktion för att göra specifik s
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    // Här presenteras hämtad data i movieDetailsSection
+    
     const movieTitle = document.createElement('h2');
     movieTitle.textContent = data.Title
     movieTitle.classList.add('details__title');
@@ -248,6 +237,14 @@ async function fetchMovieDetails(event) { //  funktion för att göra specifik s
 
     return data;
 }
+
+async function clearSearch() {
+    const clearBtnRef = document.querySelector("#favBtn");
+    const searchInputRef = document.querySelector("#searchInput");
+    clearBtnRef.addEventListener('click', () => {
+        searchInputRef.value = '';
+    });
+};
 
 // 
 

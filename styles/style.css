@@ -33,6 +33,7 @@ body {
 }
 
 .d-flex {
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,15 +45,17 @@ body {
 
 /* Header */
 .header {
-    background-color: var(--header-grey);
+    /*   */
     width: 100%;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    /* padding-top: 1.5rem;
+    padding-bottom: 1.5rem; */
     z-index: 999;
 }
 
 .header__flex {
     /* width: 100%; */
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
