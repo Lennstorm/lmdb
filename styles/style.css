@@ -22,41 +22,63 @@ body {
 
 /* Utils */
 .content-wrapper {
-    width: 1280px;
+    width: 70%;
+    /* max-width: 1280px; */
     margin: 0 auto;
+    background-color: var(--primary-grey);
 }
 
 .d-none {
     display: none;
 }
 
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-grid {
+    display: flex;
+}
+
 /* Header */
 .header {
     background-color: var(--header-grey);
     width: 100%;
-    padding: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     z-index: 999;
 }
 
 .header__flex {
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.header__flex > * {
+    flex-grow: 1;
+    flex-basis: 33%;
+    /* background-color: aqua; */
+}
+
 .header img {
-    width: 150px;
-    background-color: yellow;
+    margin-left: 1rem;
+    max-width: 50%;
+    min-width: 50px;
+    /* background-color: yellow; */
 }
 
 .header form {
-    width: 100%;
+
     display: flex;
     justify-content: center;
 }
 
 .header input {
-    width: 50%;
+    width: 100%;
     padding: 1rem;
     border-radius: 2rem 0 0 2rem;
     border: none;
@@ -70,6 +92,8 @@ body {
 }
 
 .header__fav-btn {
+    
+    margin-right: 1rem;
     text-decoration: none;
     font-size: 1.5rem;
     color: var(--text-yellow);
@@ -136,80 +160,235 @@ body {
 
 /* Här skriver ni er CSS */
 
-.popular {
-background-color:var(--text-yellow);
-display: flex;
-flex-direction: column;
-align-items: center;
-border-radius: 10x;
+#popMovies {
+    margin-top: 2rem;
+/*    display: flex;
+    flex-direction: column;*/
+    align-items: center;
 }
 
+/* Rubrik h2 för populära filmer */
+/* Barn till #popular__card-container/.popular__card-container */ 
 .popular__title {
-    /* Rubrik h2 för populära filmer */
-    margin-top: 0;
-    background-color: var(--primary-grey);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    /*background-color: var(--primary-grey);*/
     color: var(--text-yellow);
-    font-size: 1rem;
+    font-size: 3rem;
     
+}
+
+/* class för topp20-filmerna */
+.popular {
+    /*    background-color:var(--primary-grey);*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10x;
 }
 
 .popular__card-container  {
     /* låda för galleriet */
-    background-color: var(--text-blue);
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
+    padding: 2rem;
 }
 
+/* Filmkort för topp20-filmer.*/
+/*   Barn till .popular__card-container */
 .popular__card {
-    /* kort för topp20-filmerna */
-    background-color: var(--text-yellow);
-    width: 50px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid var(--text-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-white);
+    min-width: 260px;
+    max-width: 10%;
+    margin: 5px;
+    padding: 2rem;
+    border: 5px solid var(--text-yellow);
     border-radius: 5px;
-    box-shadow: 0 0 5px var(--primary-grey);
+    box-shadow: 0 0 5px var(--primary-grey);    
+}
+
+/* class för bilder i korten*/
+/* Barn till .popular__card */
+.popularCard-img {
+    width: 100%;
+    height: 100%;
 
 }
 
-.popular__card img{
-    /* class för bilder i korten
-    width: 10%;
-    height: auto;*/
-    border-radius: 5 px;
-}
-
+/* class för h3:or i filmkorten*/
+/* Barn till .popular__card */
 .popular__card h3 {
-    /* class för h3:or i filmkorten*/
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 1rem;
+    max-width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }
 
-.popular__card p {
-    /* styling av texten i filmkorten*/
-    font-size: 14px;
-}
+/* .details-card {
+    
+} */
 
+/* class för article som renderar filmdetaljer vid klick på sökt film*/
 .details {
+    display: grid;
     width: 70%;
-    background-color: var(--text-blue);
+    background-color: var(--primary-white);
+    border: 5px solid var(--text-yellow);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.details__title {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__director {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__poster {
+    margin: auto auto 1rem 1rem;
+    max-width: 50%;    
+    
+}
+
+.details__genre {
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__plot{
+    margin: auto auto 1rem 1rem;
+    
+}
+
+.details__earnings {
+    margin: auto auto 1rem 1rem;
+
 }
 
 
 
+.results {
+    /*div som innehåller sökresultat. Barn till #searchResults*/
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    }
 
-/* Media Queries 
+.results__title {
+    /* h2 som är rubrik i sökresultatet. Barn till .results*/
+    color: var(--text-yellow);
+    margin: 2rem;
+    width: 100%;
+    text-align: center;
+
+}
+
+.results__list {
+    /*UL som innehåller listelement. Barn till .results*/
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+}
+.result {
+    /*listelementen som skapas vid sökning. Barn till .results__list*/
+    list-style: none;
+    max-width: 100%;
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid var(--text-yellow);
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--primary-grey);    
+    display: flex;
+}
+
+.result img {
+    /*bilder i listelementen. Barn till .result*/
+    max-width: 20%;    
+    min-width: 20px;
+      
+}
+
+.result span {
+    /*textelement i listelement Barn till .result*/
+    max-width: 70%;
+    margin: .3rem;
+    font-size: 1rem;
+    color: var(--text-yellow);
+    word-wrap: break-word;
+}
+
+.footer {
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__text {
+    margin: auto auto 4rem auto;
+    align-self: center;
+    font-size: 1.5rem;
+    color: var(--text-yellow);
+}
+
+
+
+/*Breakpoints: 576 768 992 1200 1400  */ 
+
+ Media Queries 
+@media screen and (min-width: 1400px) {
+    .result {
+        min-width: 300px;
+        max-width: 500%;
+    }
+    
+}
+
 @media screen and (max-width: 1380px) {
     .content-wrapper {
+        width: 80%;
     }
+    
 }
 
 @media screen and (max-width: 1100px) {
     .content-wrapper {
+        width: 80%;
+    }
+    
+}
+
+@media screen and (max-width: 992px) {
+    :root {font-size: 12px;}
+    .content-wrapper {
+        width: 80%;
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 768px) {
+    :root {font-size: 8px;}
     .content-wrapper {
+        width: 70%;
     }
-}*/
+}
+
+@media screen and (max-width: 400px) {
+    :root {font-size: 6px;}
+    .content-wrapper {
+        width: 70%;
+    }
+}
